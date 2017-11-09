@@ -1,0 +1,125 @@
+<style>
+  .subHeading{
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  .col-md-4{
+    text-align: right;
+  }
+  .mainContainer{
+    font-size: 12px;
+
+  }
+  .logout{
+    cursor: pointer;
+  }
+</style>
+<div *ngIf = "settingData" class = "mainContainer">
+  <div class = "col-md-9">
+    <div class = "col-md-8 subHeading">
+      Referral Code:{{settingData.referalCode}}
+    </div>
+    <div class = "col-md-4">
+    </div>
+    <div class = "col-md-8 subHeading">
+      Profile
+    </div>
+    <div class = "col-md-4">
+
+    </div>
+    <div class = profile>
+      <div class = "col-md-8">
+        Name
+      </div>
+      <div class = "col-md-4">
+        {{ settingData.firstName}} {{settingData.lastName}}
+      </div>
+      <div class = "col-md-8">
+        Username</div>
+      <div class = "col-md-4">
+        {{settingData.userProfileKey }}
+      </div>
+      <div class = "col-md-8">
+        About Me
+      </div>
+      <div class = "col-md-4">
+        {{settingData.aboutMe}}
+      </div>
+      <div class = "col-md-8">
+        Website
+      </div>
+      <div class = "col-md-4">
+
+      </div>
+      <div class = "col-md-8">
+        Blog
+      </div>
+      <div class = "col-md-4">
+
+      </div>
+      <div class = "col-md-8">
+        Email
+      </div>
+      <div class = "col-md-4">
+        {{settingData.email}}
+      </div>
+      <div class = "col-md-8">
+        Country
+      </div>
+      <div class = "col-md-4">
+
+      </div>
+      <div class = "col-md-8">
+        Gender
+      </div>
+      <div class = "col-md-4">
+        {{settingData.userGender}}
+      </div>
+    </div>
+    <div class = "col-md-8 subHeading">
+      General
+    </div>
+    <div class = "col-md-4">
+
+    </div>
+    <div class = "general">
+      <div class = "col-md-8">
+        Push Notification</div>
+      <div class = "col-md-4">
+        <input type="checkbox" name="vehicle" value="Car" checked>
+      </div>
+      <div class = "col-md-8">
+        Email Notification</div>
+      <div class = "col-md-4">
+        <input type="checkbox" name="vehicle" value="Car" checked>
+      </div>
+      <div class = "col-md-8">
+        Privacy Policy
+      </div>
+      <div class = "col-md-4">
+
+      </div>
+      <div class = "col-md-8">
+        Terms and Condition
+      </div>
+      <div class = "col-md-4">
+
+      </div>
+    </div>
+    <div class = "col-md-8 subHeading">
+      Account
+    </div>
+    <div class = "col-md-4">
+
+    </div>
+    <div class = "col-md-8">
+      <span class = logout (click)="logout()">
+        Logout from your account
+      </span>
+    </div>
+    <div class = "col-md-4">
+
+    </div>
+</div>
+</div>

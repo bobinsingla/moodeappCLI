@@ -1,0 +1,157 @@
+<head>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<style>
+  .shopMain {
+    position: relative;
+    height: 220px;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 40px;
+  }
+
+  .eachShopContent{
+    cursor: pointer;
+    padding-left: 30%;
+    padding-right: 30%;
+    width: 100%;
+    height: 180px;
+    background-color: #E3E3E3;
+  }
+  .eachShopContent img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .productInformation{
+    height: 20%;
+    width: 100%;
+  }
+  .productName{
+    width: 100%;
+    height: 8px;
+    font-family: HelveticaNeue,monospace;
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    overflow-x: hidden;
+
+  }
+  .heart_icon {
+    width: 8.7px;
+    height: 7.9px;
+  }
+  .views-eye-copy-8 {
+    width: 15.3px;
+    height: 8.7px;
+  }
+
+  .likes{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .productInformation .mrpToRight {
+    float:right;
+    padding-right: 10px;
+    color:red;
+    font-weight: bold;
+    text-decoration: line-through;
+  }
+  .productInformation .sellingPriceToRight{
+    float:right;
+    padding-left: 10px;
+    font-weight: bold;
+  }
+  .sectionBar{
+		height: 50px;
+		width: 100%;
+		color: white;
+		font-size: 12px;
+		font-weight: bold;
+	}
+
+	.publishers{
+		display: inline-block;
+		height:100%;
+		margin-left: 25px;
+		cursor:pointer;
+		margin-top: 5px;
+		height: 25px;
+		width: 95px;
+		text-align: center;
+		padding-top: 5px;
+
+	}
+	.subCategory{
+		position: relative;
+		width: 100%;
+		height: 100px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 0;
+	}
+  .subCategory div {
+    display: inline-block;
+  }
+
+	.subCategoryImage{
+    position: relative;
+    height:60px;
+    width:60px;
+    margin-right: 10px;
+	}
+  .subCategoryName{
+    position:absolute;
+    height: 20%;
+    color: white;
+    width: 100%;
+    bottom: 0;
+    font-size: 10px;
+    padding-left: 10px;
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+  }
+</style>
+<div class = "container-fluid">
+	<div [ngStyle]="{'background-image': 'url(' + getBackgroundImage() + ')', 'background-size': '5% 100%'}" class = "sectionBar">
+		<div *ngFor = "let category of categoryArray" class = "col col-md-3 publishers" [ngClass]="getBackgroundCss(category)" (click)="getDataByCategory(category)">
+			{{ category.shopName }}
+		</div>
+	</div>
+
+	<div class = "subCategory">
+		<div *ngFor= "let subCategory of subCategoryDetailArray"
+         (click) = getShopSubCategory(subCategory)>
+				<!--<img [src] = "getSubCategoryImage(subCategory)" width="50px" height="50px" >-->
+        <div class= "subCategoryImage" [ngStyle]="{'background': 'url(' + getSubCategoryImage(subCategory) + ')' , 'background-size': '100% 100%' }">
+          <div class = "subCategoryName">
+            {{ subCategory.subCatName }}
+          </div>
+			</div>
+		</div>
+	</div>
+
+	<div *ngFor = " let shopContent of shopContentArray " class = "shopMain col col-md-3">
+		<div>
+			<div class = "eachShopContent" (click)="goToProductDetail(shopContent)" >
+				<img [src]=getShopImageUrl(shopContent) />
+			</div>
+				<div class = "productInformation" align="left">
+					<span class = "productName">{{ shopContent.name }}</span><br/>
+					<span class = "glyphicon glyphicon-heart heart_icon"></span>
+					<span class = likes>{{ shopContent.totalLikes }}</span>
+					<span class = "glyphicon glyphicon-eye-open views-eye-copy-8"></span>
+					<span>{{ shopContent.totalView }}</span>
+					<span *ngIf = productSellingPrice(shopContent) class = "sellingPriceToRight"><i class="fa fa-inr"></i>{{ shopContent.sellingPrice }}</span>
+					<span *ngIf = productMRP(shopContent) class = "mrpToRight"><i class="fa fa-inr"></i>{{shopContent.mrp}}</span>
+				</div>
+		</div>
+	</div>
+</div>
